@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Babysleep::Application.config.secret_token = 'a0495c7943f82ea2cc2d0bf761d9e23a9470e5e435c07d510ddbce3d927f81512518e3c3747a4f6773bccfd95f386f13b132d098b7c9a923aac0979458d4da25'
+Babysleep::Application.config.secret_token = '5f1fbdfc6305f8461f4d3646434d08e1cf44b530862a7e86ab3511ac28bc80812eef592b42ae5ca9db92c067fa0c48d0453b05fb97817bde46e8e45c318ff9e7'
