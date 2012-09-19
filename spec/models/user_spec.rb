@@ -5,20 +5,28 @@ describe User do
 
 	subject { @user }
 
-  it { should be_an_instance_of(User) }
-
-  describe "name must be present" do
-	  before { @user.name = " " }
+  describe 'name must be present' do
+	  before { @user.name = ' ' }
 	  it { should_not be_valid }
 	end
 
-	  describe "email must be present" do
-	  before { @user.email = " " }
+	  describe 'email must be present' do
+	  before { @user.email = ' ' }
 	  it { should_not be_valid }
 	end
 
-  describe "password must be present" do
-	  before { @user.password = " " }
+  describe 'password must be present' do
+	  before { @user.password = ' ' }
+	  it { should_not be_valid }
+	end
+
+	describe 'name must be longer than 4 characters' do
+	  before { @user.name = 'a' * 4 }
+	  it { should_not be_valid }
+	end
+
+	describe 'name must be shorter than 100 characters' do
+	  before { @user.name = 'a' * 101 }
 	  it { should_not be_valid }
 	end
 
