@@ -1,18 +1,13 @@
  $(document).ready(function(){
 	 $("#button1").click(function() {
+	 	console.log('klick');
 		$.ajax(
 		{
 			type: "GET",
-			url: "http://localhost:3000/users.json",
+			url: "http://" + window.location.host + "/users.json",
 			dataType: "json"
-		}
-			).done(
-				function(responseData){
-					console.log(responseData);
-				});
-
-		alert("Nu är det klickat"); 
+		})
+	    	.done(function() { alert("success"); })
+	    	.fail(function() { alert("error"); });
 		});
  });
-
-
