@@ -20,10 +20,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+# For Ruby 1.9 AppFog requires a tweak to the jquery-rails gem.
+# gem 'jquery-rails'
+gem 'cloudfoundry-jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
 # To use ActiveModel has_secure_password
