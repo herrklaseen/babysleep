@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password
+  has_one :parent, :inverse_of => :user
 
   before_save { |user| user.email = user.email.downcase }
 

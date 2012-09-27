@@ -1,5 +1,5 @@
 class Parent < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, :inverse_of => :parent
   attr_accessible :name
 
   validates :name, {
