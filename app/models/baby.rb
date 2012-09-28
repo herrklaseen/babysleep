@@ -1,5 +1,5 @@
 class Baby < ActiveRecord::Base
-  attr_accessible :date_of_birth, :name
+  attr_accessible :name, :date_of_birth
   belongs_to :parent
 
   validates :name, {
@@ -9,5 +9,8 @@ class Baby < ActiveRecord::Base
   validates :date_of_birth, {
     :presence => true
     }
+  validates :parent, {
+    :presence => true
+  }
   
 end

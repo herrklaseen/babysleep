@@ -27,7 +27,18 @@ describe Parent do
   describe 'its User instance' do
     it 'can access Parent attributes' do
       name_from_parent = @parent.name
-      name_from_parent.object_id == @user.parent.name.object_id
+      @user.parent.name.object_id.should eq(name_from_parent.object_id)
+    end
+  end
+
+  describe 'with two babies' do
+    before do
+     baby1 = Baby.new(:name => 'Kid1', :date_of_birth => Date.civil(2011, 6, 1))
+     baby2 = Baby.new(:name => 'Kid2', :date_of_birth => Date.civil(2012, 6, 1))
+     @parent.babies = [ baby1, baby2 ]
+    end
+    it 'should have two babies' do
+      @parent.babies.length.should eq(2)
     end
   end
 
