@@ -41,7 +41,6 @@ describe User do
 		it { should_not be_valid }
 	end
 
-
   describe 'with blank password' do
 	  before { @user.password = ' ' }
 	  it { should_not be_valid }
