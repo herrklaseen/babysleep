@@ -19,4 +19,27 @@ describe Sleeptime do
     end
   end
 
+  describe 'when duration is negative' do
+    before do
+      starttime = DateTime.now 
+      endtime = DateTime.now - 1.hour
+      @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
+    end
+    it 'sleeptime be invalid' do
+      @sleeptime.should be_invalid
+    end
+  end
+
+  describe 'when sleeptime is passed 24-hour time strings' do
+    before do
+      starttime = '0430' 
+      endtime = '0530'
+      @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
+    end
+    it 'should be valid' do
+      @sleeptime.should be_valid
+    end
+  end
+
+
 end
