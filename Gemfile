@@ -7,7 +7,6 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,6 +25,7 @@ gem 'cloudfoundry-jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'faker'
 end
 
 group :production do
