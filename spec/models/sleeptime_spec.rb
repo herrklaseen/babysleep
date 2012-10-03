@@ -43,7 +43,7 @@ describe Sleeptime do
 
     describe 'when sleeptime is passed erroneous time strings' do
     before do
-      starttime = '0430' 
+      starttime = '030' 
       endtime = '530'
       @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
     end
