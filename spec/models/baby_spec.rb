@@ -24,11 +24,4 @@ describe Baby do
     it { should_not be_valid }
   end
 
-  describe 'can tell' do
-    it 'its Parent\'s name' do
-      name_from_parent = @parent.name
-      @baby.parent.name.object_id.should eq(name_from_parent.object_id)
-    end
-  end
-
 end

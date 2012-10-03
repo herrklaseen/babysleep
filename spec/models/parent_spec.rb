@@ -19,18 +19,6 @@ describe Parent do
     it { should_not be_valid }
   end
 
-  ## Perhaps this is an overkill test. It checks for
-  ## object_id equality to determine that a User instance
-  ## can access its Parent attributes on object level. I.e.
-  ## both instances point to the same object of class String.
-
-  describe 'its User instance' do
-    it 'can access Parent attributes' do
-      name_from_parent = @parent.name
-      @user.parent.name.object_id.should eq(name_from_parent.object_id)
-    end
-  end
-
   describe 'with two babies' do
     before do
      baby1 = Baby.new(:name => 'Kid1', :date_of_birth => Date.civil(2011, 6, 1))
