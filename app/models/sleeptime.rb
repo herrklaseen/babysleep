@@ -18,7 +18,7 @@ class Sleeptime < ActiveRecord::Base
     sleeptime_object = Sleeptime.new
     sleeptime_object.baby = baby_object
 
-    if (starttime.respond_to?('year'))
+    if (starttime.respond_to?('minute'))
       sleeptime_object.start = starttime
     else
       begin
@@ -38,7 +38,7 @@ class Sleeptime < ActiveRecord::Base
   private
 
   def self.create_duration(starttime, endtime)
-    if (endtime.respond_to?('year'))
+    if (endtime.respond_to?('minute'))
       duration = endtime.to_i - starttime.to_i
     else
       begin
