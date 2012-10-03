@@ -41,5 +41,15 @@ describe Sleeptime do
     end
   end
 
+    describe 'when sleeptime is passed erroneous time strings' do
+    before do
+      starttime = '0430' 
+      endtime = '530'
+      @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
+    end
+    it 'should not be valid' do
+      @sleeptime.should_not be_valid
+    end
+  end
 
 end
