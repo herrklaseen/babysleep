@@ -8,11 +8,12 @@ describe Sleeptime do
     @baby.save
   end
 
-  describe 'when sleeptime is passed DateTime-objects and baby' do
+
+  describe 'when sleeptime is passed 24-hour time strings' do
     before do
-      starttime = DateTime.now - 1.hour
-      endtime = DateTime.now
-      @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
+      starttime = '0430' 
+      endtime = '0530'
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should be valid' do
       @sleeptime.should be_valid
@@ -21,25 +22,24 @@ describe Sleeptime do
 
   describe 'when duration is negative' do
     before do
-      starttime = DateTime.now 
-      endtime = DateTime.now - 1.hour
-      @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
+      starttime = '0530'
+      endtime = '0430'
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
-    it 'sleeptime be invalid' do
+    it 'sleeptime should not be valid' do
       @sleeptime.should be_invalid
     end
   end
 
-  describe 'when sleeptime is passed 24-hour time strings' do
+  describe 'when sleeptime is passed erroneous time strings' do
     before do
-      starttime = '0430' 
-      endtime = '0530'
-      @sleeptime = Sleeptime.parse(starttime, endtime, @baby)
+      starttime = '030' 
+      endtime = '530'
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
-    it 'should be valid' do
-      @sleeptime.should be_valid
+    it 'should not be valid' do
+      @sleeptime.should_not be_valid
     end
   end
-
 
 end
