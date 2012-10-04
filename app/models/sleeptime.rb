@@ -14,18 +14,15 @@ class Sleeptime < ActiveRecord::Base
                        :greater_than => 0 }
   }
 
-  def self.parse (starttime = (DateTime.now-24.hours), endtime = DateTime.now, baby_object = nil)
+  def self.make_instance (starttime, endtime, baby_object = nil)
     sleeptime_object = Sleeptime.new
     sleeptime_object.baby = baby_object
 
-    if (starttime.respond_to?('minute'))
-      sleeptime_object.start = starttime
-    else
-      begin
-        sleeptime_object.start = DateTime.strptime(starttime, '%H%M')
-      rescue ArgumentError
-        sleeptime_object.start = nil
-      end
+    begin
+      sleeptime_object.start = self.parse(starttime)
+      endtime = self.parse(endtime)
+    rescue ArgumentError
+      sleeptime_object.start = nil
     end
 
     if (sleeptime_object.start?)
@@ -37,19 +34,12 @@ class Sleeptime < ActiveRecord::Base
 
   private
 
-  def self.create_duration(starttime, endtime)
-    if (endtime.respond_to?('minute'))
-      duration = endtime.to_i - starttime.to_i
-    else
-      begin
-        endtime = DateTime.strptime(endtime, '%H%M')
-        duration = self.create_duration(starttime, endtime)
-      rescue ArgumentError
-        duration = 0
-      end
-    end
+  def self.parse(date_string) 
+    DateTime.strptime(date_string, '%H%M')
+  end
 
-    duration
+  def self.create_duration(starttime, endtime)
+    duration = endtime.to_i - starttime.to_i
   end
 
 end
