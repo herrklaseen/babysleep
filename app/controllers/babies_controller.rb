@@ -10,12 +10,12 @@ class BabiesController < ApplicationController
     end
   end
 
-  def sleeptime
-    @babies = Baby.find(params[:id])
+  def last_24h_sleeptime
+    @baby = Baby.find(params[:id])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @babies }
+      format.json { render json: @baby.last_24h_sleeptime }
     end
   end
 

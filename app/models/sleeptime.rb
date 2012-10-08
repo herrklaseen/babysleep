@@ -32,6 +32,13 @@ class Sleeptime < ActiveRecord::Base
     sleeptime_object
   end
 
+  def self.seconds_to_human_readable(seconds, locale='en')
+    hours = (seconds / 1.hour.to_i).floor
+    remaining_seconds = seconds - (hours * 1.hour.to_i)
+    minutes = (remaining_seconds / 1.minute.to_i).floor
+    "#{hours} h, #{minutes} min"
+  end
+
   private
 
   def self.parse(date_string) 

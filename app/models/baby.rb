@@ -1,6 +1,4 @@
 require 'active_support/core_ext/enumerable'
-require 'action_view/helpers/date_helper'
-
 
 class Baby < ActiveRecord::Base
   attr_accessible :name, :date_of_birth
@@ -30,6 +28,8 @@ class Baby < ActiveRecord::Base
       end
     end
 
+    sleeptime_last_24h[:for_humans] = 
+        Sleeptime.seconds_to_human_readable(sleeptime_last_24h[:in_seconds])
     sleeptime_last_24h
   end
 

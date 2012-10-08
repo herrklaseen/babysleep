@@ -15,12 +15,12 @@ $(document).ready(function(){
 		$.ajax(
 		{
 			type: "GET",
-			url: "http://" + window.location.host + "/babies/" + baby_id + "/sleeptimes.json",
+			url: "http://" + window.location.host + "/babies/" + baby_id + "/last_24h_sleeptime.json",
 			dataType: "json"
 		})
 	    	.done(function(dataResponse) { 
-	    		duration = dataResponse.duration;
-	    		alert("the first duration: " + duration); 
+	    		duration = dataResponse.in_seconds;
+	    		alert("your baby slept " + duration + " seconds during the last 24 h"); 
 	    		})
 	    	.fail(function() { alert("error"); });
 		});
