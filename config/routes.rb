@@ -1,4 +1,5 @@
 Babysleep::Application.routes.draw do
+  root :to => 'babies#index'
   resources :users 
   resources :babies do
     get 'last_24h_sleeptime', :on => :member

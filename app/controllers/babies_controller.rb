@@ -4,10 +4,11 @@ class BabiesController < ApplicationController
   def index
     @babies = Baby.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @babies }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.mobile {render }
+    #   format.json { render json: @babies }
+    # end
   end
 
   def last_24h_sleeptime
