@@ -1,4 +1,27 @@
 class UsersController < ApplicationController
+
+  def login
+    responseData = { :user_id => nil, :parent_id => nil }
+    @user = User.find_by_email_and_password(params[:email], params[:password])
+    if (@user)
+      responseData[:user_id] = @user.id
+    end
+
+    @parent = Parent.find_by_user_id(@user.id)
+
+    # If the User is also a Parent
+    #
+    if (@parent)
+      responseData[:parent_id] = @parent.id
+    end
+
+    respond_to do |format|
+      format.html
+      format.mobile { render json: responseData } 
+      format.json { render json: responseData } 
+    end
+  end
+
   # GET /users
   # GET /users.json
   def index
