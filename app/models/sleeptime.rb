@@ -39,6 +39,12 @@ class Sleeptime < ActiveRecord::Base
     "#{hours} h, #{minutes} min"
   end
 
+  def self.seconds_to_percentage_of_24h(seconds)
+    sleep_percentage = ((seconds / 24.hours.to_f) * 100).round
+    wake_percentage = 100 - sleep_percentage
+    [sleep_percentage, wake_percentage]
+  end
+
   private
 
   def self.parse(date_string) 

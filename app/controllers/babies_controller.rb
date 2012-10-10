@@ -24,7 +24,8 @@ class BabiesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.mobile or format.json{ render json: @baby.last_24h_sleeptime }
+      format.mobile { render json: @baby.last_24h_sleeptime }
+      format.json { render json: @baby.last_24h_sleeptime }
     end
   end
 

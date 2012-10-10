@@ -40,5 +40,10 @@ describe Baby do
     end
   end
 
+  describe 'with five hours of sleeptime' do
+    it 'should report that time percent of 24 hours' do
+      @baby.last_24h_sleeptime[:percentage].should eq([21, 79])
+    end
+  end
 
 end
