@@ -53,6 +53,7 @@ var actions = {
   },
 
   "start" : function(element){
+    element.html("");
     element.append(staticViews.forms.login);
     element.append(staticViews.forms.inputBabyId);
     element.append(staticViews.containers.sleeptimeChart);
@@ -111,7 +112,10 @@ var actions = {
   }, 
 
   "showBaby24hSleeptime" : function(babyId) {
+    elementHandles.forms.inputBabySleeptime.hide();
+    elementHandles.containers.sleeptimeChart.hide();
     elementHandles.containers.sleeptimeChart.html("");
+
     $.ajax(
     {
       type: 'GET',
