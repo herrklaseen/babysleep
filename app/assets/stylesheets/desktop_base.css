@@ -1,0 +1,8 @@
+body {
+  background-color: teal
+}
+
+ .chart rect {
+stroke: white;
+fill: steelblue;
+}

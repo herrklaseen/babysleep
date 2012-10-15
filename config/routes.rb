@@ -1,5 +1,14 @@
 Babysleep::Application.routes.draw do
+  root :to => 'babies#start'
+  match "login" => "users#login", :as => "login", :via => [:get, :post]
   resources :users
+  resources :parents do
+    resources :babies
+  end 
+  resources :babies do
+    get 'last_24h_sleeptime', :on => :member
+    resources :sleeptimes
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

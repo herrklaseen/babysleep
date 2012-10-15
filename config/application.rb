@@ -61,5 +61,8 @@ module Babysleep
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Adding stuff to precompile
+    config.assets.precompile += [ 'mobile.js', 'mobile.css' ]
   end
 end

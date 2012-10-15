@@ -36,8 +36,8 @@ namespace :db do
     parents.each do |parent|
       name = Faker::Name.first_name
       date_of_birth = Date.current
-      date_of_birth += -rand(4).years
-      date_of_birth += -rand(12).months
+      date_of_birth += - rand(4).years
+      date_of_birth += - rand(12).months
       baby = Baby.new( 
                       :name => name, 
                       :date_of_birth => date_of_birth
@@ -54,9 +54,9 @@ namespace :db do
 
     babies.each do |baby|
       5.times do |n|
-        starttime = DateTime.current - (n-2).hours
-        endtime = starttime.dup + 1.hours
-        sleeptime = Sleeptime.parse(starttime, endtime, baby)
+        starttime = DateTime.current - (2 * n).hours
+        endtime = (starttime.dup + 1.hours) - rand(20).minutes
+        sleeptime = Sleeptime.make_instance(starttime.strftime('%H%M'), endtime.strftime('%H%M'), baby)
         sleeptime.save!
       end
     end
