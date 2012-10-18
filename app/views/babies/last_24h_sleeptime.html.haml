@@ -1,0 +1,5 @@
+#sleeptime_chart
+
+%p 
+  = [@baby.name, t('babies.last_24h_sleeptime.slept'), @baby.last_24h_sleeptime[:for_humans], t('babies.last_24h_sleeptime.during_last_24h')].join(' ') << '.'
+   

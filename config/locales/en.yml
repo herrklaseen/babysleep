@@ -2,4 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  users:
+    login:
+      log_in_greeting: "Please log in"
+      email: "Your email"
+      password: "Your password"
+      log_in_submit: "Log in"
+  babies:
+    index:
+      choose_baby: "Choose baby"
+    last_24h_sleeptime: 
+      slept: "has slept"
+      during_last_24h: "during the last 24 hours"
+

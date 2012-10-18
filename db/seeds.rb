@@ -21,20 +21,26 @@ name = 'A User'
 @parent.user = @user
 @parent.save!
 
-# Generate baby
+# Generate babies
 
-name = 'Kiddy'
-date_of_birth = Date.current - rand(4).years - rand(12).months
-@baby = Baby.new( :name => name, 
-                  :date_of_birth => date_of_birth )
-@baby.parent = @parent
-@baby.save!
+names = ['Kiddy One', 'Kiddy Two']
+names.each do |name|
+  date_of_birth = Date.current - rand(4).years - rand(12).months
+  baby = Baby.new( :name => name, 
+                    :date_of_birth => date_of_birth )
+  baby.parent = @parent
+  baby.save!
+end
 
 # Generate sleeptimes
 
-5.times do |n|
-  starttime = DateTime.current - (2 * n).hours
-  endtime = (starttime.dup + 1.hours) - rand(20).minutes
-  sleeptime = Sleeptime.make_instance(starttime.strftime('%H%M'), endtime.strftime('%H%M'), @baby)
-  sleeptime.save!
+babies = Baby.all
+
+babies.each do |baby|
+  5.times do |n|
+    starttime = DateTime.current - (2 * n).hours
+    endtime = (starttime.dup + 1.hours) - rand(20).minutes
+    sleeptime = Sleeptime.make_instance(starttime.strftime('%H%M'), endtime.strftime('%H%M'), baby)
+    sleeptime.save!
+  end
 end

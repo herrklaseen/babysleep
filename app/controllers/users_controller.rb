@@ -1,24 +1,20 @@
 class UsersController < ApplicationController
 
   def login
-    responseData = { :user_id => nil, :parent_id => nil }
-    @user = User.find_by_email_and_password(params[:email], params[:password])
-    if (@user)
-      responseData[:user_id] = @user.id
-    end
-
-    @parent = Parent.find_by_user_id(@user.id)
-
-    # If the User is also a Parent
-    #
-    if (@parent)
-      responseData[:parent_id] = @parent.id
-    end
-
-    respond_to do |format|
-      format.html
-      format.mobile { render json: responseData } 
-      format.json { render json: responseData } 
+    if (params[:email] and params[:password])
+      @user = User.find_by_email_and_password(params[:email], params[:password])
+      if (@user)
+        session[:user_id] = @user.id
+        session[:parent_id] = Parent.find_by_user_id(@user.id).id
+        
+        respond_to do |format|
+          format.html { redirect_to '/babies' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html 
+      end
     end
   end
 
