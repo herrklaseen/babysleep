@@ -14,27 +14,4 @@
           
     .container
       = yield
-    :javascript
-      function generateChart() {
-        var m = 10,
-        r = 100,
-        z = d3.scale.category20c();
-
-        var chart = d3.select("#sleeptime_chart").selectAll("svg")
-          .data(#{@baby.last_24h_sleeptime[:percentage]})
-        .enter().append("svg:svg")
-          .attr("width", (r + m) * 2)
-          .attr("height", (r + m) * 2)
-        .append("svg:g")
-          .attr("transform", "translate(" + (r + m) + "," + (r + m) + ")");
-
-        chart.selectAll("path")
-          .data(d3.layout.pie())
-        .enter().append("svg:path")
-          .attr("d", d3.svg.arc()
-          .innerRadius(r / 2)
-          .outerRadius(r))
-          .style("fill", function(d, i) { return z(i); });
-        }
-      window.onload=generateChart;
-      
+        

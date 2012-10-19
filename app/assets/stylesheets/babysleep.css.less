@@ -1,7 +1,8 @@
 @import "twitter/bootstrap/variables";
 
 /* Color overrides */
-@bodyBackground: teal;
+@bodyBackground: AliceBlue;
+@navbarBackground: #333;
 
 /* Mixins */
 
@@ -14,6 +15,12 @@
 .unlinkify() {
   text-decoration: none;
   color: @textColor;
+}
+
+.sane-box-model() {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 /* Global */
@@ -49,6 +56,33 @@ body {
 .clickable-list ul {
   list-style: none;
   margin: 0;
+}
+
+/* Charts */
+
+.chart div.bar {
+  .sane-box-model;
+  text-align: center;
+  padding: 3px;
+  margin: 0px;
+  color: white;
+  float: left;
+}
+
+.chart .awake {
+  background-color: @yellow;
+}
+
+.chart .asleep {
+  background-color: @blue;
+}
+
+#explanation {
+  margin-bottom: 0.5em;
+}
+
+#sleeptime_chart {
+  margin-bottom: 1em;
 }
 
 /* Large desktop */

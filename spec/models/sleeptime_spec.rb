@@ -20,14 +20,14 @@ describe Sleeptime do
     end
   end
 
-  describe 'when duration is negative' do
+  describe 'when sleeptime start is later than end' do
     before do
       starttime = '0530'
       endtime = '0430'
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
-    it 'sleeptime should not be valid' do
-      @sleeptime.should be_invalid
+    it 'should be valid' do
+      @sleeptime.should be_valid
     end
   end
 
@@ -41,5 +41,31 @@ describe Sleeptime do
       @sleeptime.should_not be_valid
     end
   end
+
+  describe 'when sleeptime starts before 0000' do
+    before do
+      starttime = DateTime.current() - 24.hours
+      starttime = starttime.strftime('%H%M')
+      endtime = '1000'
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+    end
+    it 'should be valid' do
+      @sleeptime.should be_valid
+    end
+  end
+
+  describe 'when sleeptime ends after now' do
+    before do
+      starttime = DateTime.current() - 1.hours
+      starttime = starttime.strftime('%H%M')
+      endtime = DateTime.current() + 1.hours
+      endtime = endtime.strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+    end
+    it 'should not be valid' do
+      @sleeptime.should_not be_valid
+    end
+  end
+
 
 end

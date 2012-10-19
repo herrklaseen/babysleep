@@ -1,5 +1,30 @@
 #sleeptime_chart
+  #explanation.clearfix
+    .pull-left
+      = t('babies.sleeptimes.asleep')
+    .pull-right
+      = t('babies.sleeptimes.awake')
+
+  %p 
+    = @baby.last_24h_sleeptime[:percentage][0]
+  %p
+    = @baby.last_24h_sleeptime[:percentage][1]
 
 %p 
   = [@baby.name, t('babies.last_24h_sleeptime.slept'), @baby.last_24h_sleeptime[:for_humans], t('babies.last_24h_sleeptime.during_last_24h')].join(' ') << '.'
-   
+
+%form{:method => "POST", :action => "/babies/#{@baby.id}/sleeptimes"}
+  %legend 
+    = t("babies.sleeptimes.create.add_new")
+  %label 
+    = t("babies.sleeptimes.create.start")
+    %input{:type => "text",
+           :name => "start",
+           :placeholder => "#{t('babies.sleeptimes.create.placeholder_start')}"}
+  %label 
+    = t("babies.sleeptimes.create.end")
+    %input{:type => "text",
+           :name => "end",
+           :placeholder => "#{t('babies.sleeptimes.create.placeholder_end')}"}
+  %input{ :type => "submit",
+          :value => "#{t('babies.sleeptimes.create.save_sleeptime_submit')}"}

@@ -11,10 +11,10 @@ class SleeptimesController < ApplicationController
   def create
     @baby = Baby.find_by_id(params[:baby_id])
     @sleeptime = Sleeptime.make_instance(params[:start], params[:end], @baby)
-    @sleeptime.save!
+    @sleeptime.save
     respond_to do |format|
+      format.html { redirect_to "/babies/#{@baby.id}/last_24h_sleeptime"}
       format.json { render json: @sleeptimes }
-      format.mobile {render json: @sleeptimes }
     end
   end    
 

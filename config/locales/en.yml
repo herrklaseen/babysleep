@@ -14,4 +14,14 @@ en:
     last_24h_sleeptime: 
       slept: "has slept"
       during_last_24h: "during the last 24 hours"
+    sleeptimes:
+      awake: "Awake"
+      asleep: "Asleep"
+      create:
+        add_new: "Add new sleeptime"
+        start: "Start"
+        placeholder_start: "HHMM (for example 1345)"
+        end: "End"
+        placeholder_end: "HHMM (for example 1436)"
+        save_sleeptime_submit: "Save sleeptime"
 
