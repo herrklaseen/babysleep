@@ -30,6 +30,10 @@ class Sleeptime < ActiveRecord::Base
         sleeptime_object.start += -24.hours
       end
 
+      if (endtime > DateTime.current())
+        return sleeptime_object
+      end
+
       sleeptime_object.duration = self.create_duration(sleeptime_object.start, endtime)
     end
 

@@ -11,8 +11,8 @@ describe Sleeptime do
 
   describe 'when sleeptime is passed 24-hour time strings' do
     before do
-      starttime = '0430' 
-      endtime = '0530'
+      starttime = (DateTime.current() - 2.hours).strftime('%H%M')
+      endtime = (DateTime.current() - 1.hour).strftime('%H%M')
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should be valid' do
@@ -22,8 +22,8 @@ describe Sleeptime do
 
   describe 'when sleeptime start is later than end' do
     before do
-      starttime = '0530'
-      endtime = '0430'
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      endtime = (DateTime.current() - 2.hour).strftime('%H%M')
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should be valid' do
@@ -33,8 +33,11 @@ describe Sleeptime do
 
   describe 'when sleeptime is passed erroneous time strings' do
     before do
-      starttime = '030' 
-      endtime = '530'
+      # Slicing the strings to make them erroneous
+      #
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')[1, 3]
+      endtime = (DateTime.current() - 2.hour).strftime('%H%M')[1, 3]
+      
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should not be valid' do
@@ -44,9 +47,8 @@ describe Sleeptime do
 
   describe 'when sleeptime starts before 0000' do
     before do
-      starttime = DateTime.current() - 24.hours
-      starttime = starttime.strftime('%H%M')
-      endtime = '1000'
+      starttime = (DateTime.current() - 24.hours).strftime('%H%M')
+      endtime = (DateTime.current() - 1.hour).strftime('%H%M')
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should be valid' do
@@ -56,10 +58,8 @@ describe Sleeptime do
 
   describe 'when sleeptime ends after now' do
     before do
-      starttime = DateTime.current() - 1.hours
-      starttime = starttime.strftime('%H%M')
-      endtime = DateTime.current() + 1.hours
-      endtime = endtime.strftime('%H%M')
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      endtime = (DateTime.current() + 1.hours).strftime('%H%M')
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should not be valid' do
