@@ -14,6 +14,11 @@ class Sleeptime < ActiveRecord::Base
                        :greater_than => 0 }
   }
 
+  def endtime()
+    endtime = DateTime.strptime((start.to_i + duration).to_s, '%s')
+    endtime.strftime('%Y %b %d, %H.%M')
+  end
+
   def self.make_instance (starttime, endtime, baby_object = nil)
     sleeptime_object = Sleeptime.new
     sleeptime_object.baby = baby_object

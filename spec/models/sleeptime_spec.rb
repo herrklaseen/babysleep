@@ -67,5 +67,24 @@ describe Sleeptime do
     end
   end
 
+  describe 'when instance is asked for endtime' do
+    before do
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      @current_time = DateTime.current()
+      endtime = @current_time.strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+    end
+    it 'should report endtime in an explicit way' do
+      @sleeptime.endtime().should eq @current_time.strftime('%Y %b %d, %H.%M')
+    end
+  end
+
+
 
 end
+
+
+
+
+
+
