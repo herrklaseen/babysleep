@@ -10,6 +10,16 @@ class SleeptimesController < ApplicationController
     end    
   end
 
+  def new
+    @sleeptime = Sleeptime.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end
+  end
+
+
   def create
     @baby = Baby.find_by_id(params[:baby_id])
     @sleeptime = Sleeptime.make_instance(params[:start], params[:end], @baby)
@@ -18,8 +28,14 @@ class SleeptimesController < ApplicationController
       format.html { redirect_to "/babies/#{@baby.id}/last_24h_sleeptime"}
       format.json { render json: @sleeptimes }
     end
-  end    
+  end  
 
-
+  def edit
+    @sleeptime = Sleeptime.find_by_id(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @sleeptime }
+    end
+  end
 
 end

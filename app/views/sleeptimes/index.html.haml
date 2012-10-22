@@ -5,5 +5,5 @@
   %ul
     - @sleeptimes.each do |sleeptime|
       %li
-        %a{:href => "/babies/#{@baby.id}/sleeptimes/#{sleeptime.id}"}
+        %a{:href => "/babies/#{@baby.id}/sleeptimes/#{sleeptime.id}/edit"}
           = sleeptime.description
