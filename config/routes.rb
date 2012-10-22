@@ -1,5 +1,5 @@
 Babysleep::Application.routes.draw do
-  root :to => 'babies#start'
+  root :to => 'users#login'
   match "login" => "users#login", :as => "login", :via => [:get, :post]
   resources :users
   resources :parents do

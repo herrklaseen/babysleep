@@ -1,0 +1,104 @@
+@import "twitter/bootstrap/variables";
+
+/* Color overrides */
+@bodyBackground: AliceBlue;
+@navbarBackground: #333;
+
+/* Mixins */
+
+.remove-body-padding() {
+  body {
+    padding-top: 0;
+  }
+}
+
+.unlinkify() {
+  text-decoration: none;
+  color: @textColor;
+}
+
+.sane-box-model() {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+/* Global */
+
+body {
+    padding-top: 60px;
+  }
+
+body {
+  background-color: @bodyBackground;
+}
+
+.clickable-list a {
+  display: block;
+  padding: 0.5em 0.25em;
+  .unlinkify
+}
+
+.clickable-list a:hover {
+  background-color: fade(@textColor, 10%);
+}
+
+.clickable-list li {
+  border-top: solid 1px @textColor;
+  padding: 0;
+}
+
+.clickable-list {
+  background-color: fade(@white, 70%);
+  padding: 0.5em;
+}
+
+.clickable-list ul {
+  list-style: none;
+  margin: 0;
+}
+
+/* Charts */
+
+.chart div.bar {
+  .sane-box-model;
+  text-align: center;
+  padding: 3px;
+  margin: 0px;
+  color: white;
+  float: left;
+}
+
+.chart .awake {
+  background-color: @yellow;
+}
+
+.chart .asleep {
+  background-color: @blue;
+}
+
+#explanation {
+  margin-bottom: 0.5em;
+}
+
+#sleeptime_chart {
+  margin-bottom: 1em;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) { 
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) { 
+  .remove-body-padding
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+  .remove-body-padding
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+}
