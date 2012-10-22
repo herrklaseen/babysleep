@@ -2,8 +2,10 @@ class SleeptimesController < ApplicationController
 
   def index 
     @sleeptimes = Sleeptime.find_all_by_baby_id(params[:baby_id])
+    @baby = Baby.find_by_id(params[:baby_id])
 
     respond_to do |format|
+      format.html
       format.json { render json: @sleeptimes }
     end    
   end

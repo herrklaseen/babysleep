@@ -19,6 +19,10 @@ class Sleeptime < ActiveRecord::Base
     endtime.strftime('%Y %b %d, %H.%M')
   end
 
+  def description()
+    start.strftime('%b %d, %H.%M: ') << Sleeptime::seconds_to_human_readable(duration)
+  end
+
   def self.make_instance (starttime, endtime, baby_object = nil)
     sleeptime_object = Sleeptime.new
     sleeptime_object.baby = baby_object

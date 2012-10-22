@@ -24,4 +24,5 @@ en:
         end: "End"
         placeholder_end: "HHMM (for example 1436)"
         save_sleeptime_submit: "Save sleeptime"
-
+      index:
+        sleeptimes_for: "Sleeptimes for"

@@ -1,0 +1,9 @@
+.clickable-list
+  %h1
+    = t('babies.sleeptimes.index.sleeptimes_for')
+    = " #{@baby.name}"
+  %ul
+    - @sleeptimes.each do |sleeptime|
+      %li
+        %a{:href => "/babies/#{@baby.id}/sleeptimes/#{sleeptime.id}"}
+          = sleeptime.description
