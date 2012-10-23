@@ -26,3 +26,9 @@ en:
         save_sleeptime_submit: "Save sleeptime"
       index:
         sleeptimes_for: "Sleeptimes for"
+      edit:
+        edit_sleeptime: "Edit sleeptime" 
+        save_sleeptime_changes_submit: "Save changes"
+        delete_sleeptime: "Delete sleeptime"
+        delete_sleeptime_submit: "Delete sleeptime"
+

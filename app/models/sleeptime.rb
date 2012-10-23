@@ -14,9 +14,41 @@ class Sleeptime < ActiveRecord::Base
                        :greater_than => 0 }
   }
 
+  def starttime()
+    start.strftime('%Y %b %d, %H.%M')
+  end
+
+  def starttime=(new_starttime_string)
+    new_starttime_string = prepare_time_string_for_parse(new_starttime_string) { start }
+    begin
+      date_time_start = Sleeptime::parse(new_starttime_string)
+    rescue Exception => e
+      return false    
+    end
+
+    self.start = date_time_start
+    self.save!
+  end
+
   def endtime()
-    endtime = DateTime.strptime((start.to_i + duration).to_s, '%s')
+    endtime = end_datetime()
     endtime.strftime('%Y %b %d, %H.%M')
+  end
+
+  def end_datetime()
+    end_datetime = DateTime.strptime((start.to_i + duration).to_s, '%s')
+  end
+
+  def endtime=(new_endtime_string)
+    new_endtime_string = prepare_time_string_for_parse(new_endtime_string) { end_datetime }
+
+    begin
+      date_time_end = Sleeptime::parse(new_endtime_string)
+    rescue Exception => e
+      return false    
+    end
+    self.duration = Sleeptime::create_duration(start, date_time_end)
+    self.save!
   end
 
   def description()
@@ -65,11 +97,30 @@ class Sleeptime < ActiveRecord::Base
   private
 
   def self.parse(date_string) 
-    DateTime.strptime(date_string, '%H%M')
+    date_time = case date_string.length
+      when 4 then
+        DateTime.strptime(date_string, '%H%M')
+      else
+        DateTime.strptime(date_string, '%Y %b %d, %H.%M')
+    end
+    date_time  
   end
 
   def self.create_duration(starttime, endtime)
     duration = endtime.to_i - starttime.to_i
+  end
+
+  private 
+
+  def prepare_time_string_for_parse(time_string)
+    time_string = case time_string.length
+      when 4 
+        relevant_date_time = yield
+        date_string = relevant_date_time.strftime('%Y %b %d, ')
+        formatted_time_string = time_string[0, 2] << '.' << time_string[2, 2]
+        date_string << formatted_time_string
+      else time_string
+    end
   end
 
 end

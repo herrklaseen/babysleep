@@ -79,6 +79,60 @@ describe Sleeptime do
     end
   end
 
+  describe 'when instance is passed an endtime string' do
+    before do
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      @current_time = DateTime.current()
+      endtime = @current_time.strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+
+      @new_endtime_date_time = @current_time - 5.minutes
+      new_endtime_string = (@new_endtime_date_time).strftime('%H%M')
+
+      @sleeptime.endtime = new_endtime_string
+    end
+    it 'should set a new endtime' do
+      @sleeptime.endtime().should eq @new_endtime_date_time.strftime('%Y %b %d, %H.%M')
+    end
+  end
+
+
+  describe 'when instance is passed an erroneous endtime string' do
+    before do
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      @current_time = DateTime.current()
+      endtime = @current_time.strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+      @new_endtime_date_time = @current_time - 5.minutes
+
+      # Slicing string to make it erroneuos
+      #
+      new_erroneous_endtime_string = (@new_endtime_date_time).strftime('%H%M')[1, 3]
+      @sleeptime.endtime = new_erroneous_endtime_string
+    end
+    it 'should not set a new endtime' do
+      @sleeptime.endtime().should eq @current_time.strftime('%Y %b %d, %H.%M')
+    end
+  end
+
+  describe 'when instance is passed a starttime string' do
+    before do
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      @current_time = DateTime.current()
+      endtime = @current_time.strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+
+      @new_starttime_date_time = @current_time - 50.minutes
+      new_starttime_string = (@new_starttime_date_time).strftime('%H%M')
+
+      @sleeptime.starttime = new_starttime_string
+    end
+    it 'should set a new starttime' do
+      @sleeptime.starttime().should eq @new_starttime_date_time.strftime('%Y %b %d, %H.%M')
+    end
+  end
+
+
 
 
 end

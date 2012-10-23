@@ -1,3 +1,12 @@
-= form_for(@sleeptime) do |f|
-  = f.label(:start, "Start")
-  = f.text_field(:sleeptime, :start)
+= form_tag({:controller => 'sleeptimes', :action => 'update'}, {:method => :put}) do 
+  = field_set_tag(t('babies.sleeptimes.edit.edit_sleeptime')) do
+    = label_tag('start', t('babies.sleeptimes.create.start'))
+    = text_field_tag('start', @sleeptime.starttime())
+    = label_tag('end', t('babies.sleeptimes.create.end'))
+    = text_field_tag('end', @sleeptime.endtime())
+    %div
+      = submit_tag(t('babies.sleeptimes.edit.save_sleeptime_changes_submit'))
+
+= form_tag({:controller => 'sleeptimes', :action => 'destroy'}, {:method => :delete}) do
+  = field_set_tag(t('babies.sleeptimes.edit.delete_sleeptime')) do
+    = submit_tag(t('babies.sleeptimes.edit.delete_sleeptime_submit'))
