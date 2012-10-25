@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   def login
     if (params[:email] and params[:password])
       @user = User.find_by_email_and_password(params[:email], params[:password])
+      @navigation = [ {:text => "About", :url => "/about"} ]
       if (@user)
         session[:user_id] = @user.id
         session[:parent_id] = Parent.find_by_user_id(@user.id).id
