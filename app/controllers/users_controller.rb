@@ -1,21 +1,31 @@
 class UsersController < ApplicationController
 
   def login
+    @navigation = [ {:text => "About", :url => "/about"} ]
     if (params[:email] and params[:password])
       @user = User.find_by_email_and_password(params[:email], params[:password])
-      @navigation = [ {:text => "About", :url => "/about"} ]
       if (@user)
         session[:user_id] = @user.id
         session[:parent_id] = Parent.find_by_user_id(@user.id).id
         
         respond_to do |format|
-          format.html { redirect_to '/babies' }
+          format.html { redirect_to url_for(:controller => 'babies', :action => 'index') }
         end
       end
     else
       respond_to do |format|
         format.html 
       end
+    end
+  end
+
+  def logout
+    @navigation = [ {:text => "About", :url => "/about"},
+                    {:text => "Log in", :url => url_for(:action => 'login') } ]
+
+    reset_session
+    respond_to do |format|
+      format.html 
     end
   end
 

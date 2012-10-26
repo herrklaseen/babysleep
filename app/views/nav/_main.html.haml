@@ -11,8 +11,9 @@
 
       .nav-collapse.collapse
         %ul.nav
-          - @navigation.each do |link|
+          - navigation.each do |link|
             %li
-              %a{:href => "#{link.url}"}
-                "#{link.name}"
-          
+              %a{:href => "#{link[:url]}"}
+                = link[:text]
+
+           

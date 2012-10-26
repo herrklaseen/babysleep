@@ -8,6 +8,9 @@ en:
       email: "Your email"
       password: "Your password"
       log_in_submit: "Log in"
+    logout: 
+      log_out_confirmation: "You have been logged out"
+      log_out_greeting: "Thank you for using Babysleep"
   babies:
     index:
       choose_baby: "Choose baby"
