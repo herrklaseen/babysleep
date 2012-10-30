@@ -2,6 +2,8 @@ class Sleeptime < ActiveRecord::Base
   attr_accessible :start, :duration
   belongs_to :baby, :inverse_of => :sleeptimes
 
+  default_scope order('start DESC')
+
   validates :baby, {
     :presence => true
   }
