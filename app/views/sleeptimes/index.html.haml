@@ -1,9 +1,12 @@
-.clickable-list
-  %h1
-    = t('babies.sleeptimes.index.sleeptimes_for')
-    = " #{@baby.name}"
-  %ul
-    - @sleeptimes.each do |sleeptime|
-      %li
-        %a{:href => "/babies/#{@baby.id}/sleeptimes/#{sleeptime.id}/edit"}
-          = sleeptime.description
+= render "nav/main", :navigation => @navigation
+
+.container
+  .clickable-list
+    %h1
+      = t('babies.sleeptimes.index.sleeptimes_for')
+      = " #{@baby.name}"
+    %ul
+      - @sleeptimes.each do |sleeptime|
+        %li
+          %a{:href => "/babies/#{@baby.id}/sleeptimes/#{sleeptime.id}/edit"}
+            = sleeptime.description

@@ -34,4 +34,12 @@ en:
         save_sleeptime_changes_submit: "Save changes"
         delete_sleeptime: "Delete sleeptime"
         delete_sleeptime_submit: "Delete sleeptime"
+  navigation: 
+    about: "About"
+    log_in: "Log in"
+    log_out: "Log out"
+    edit_sleeptimes: "Edit sleeptimes"
+    back_to_sleeptimes: "Back to sleeptimes"
+    last_24h_sleeptime_for: "Last 24 hour sleeptime for"
+    choose_baby: "Choose baby"
 

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def login
-    @navigation = [ {:text => "About", :url => "/about"} ]
+    @navigation = [ {:text => t('navigation.about'), :url => "/about"} ]
     if (params[:email] and params[:password])
       @user = User.find_by_email_and_password(params[:email], params[:password])
       if (@user)
@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def logout
-    @navigation = [ {:text => "About", :url => "/about"},
-                    {:text => "Log in", :url => url_for(:action => 'login') } ]
+    @navigation = [ {:text => t('navigation.about'), :url => "/about"},
+                    {:text => t('navigation.log_in'), :url => url_for(:action => 'login') } ]
 
     reset_session
     respond_to do |format|
