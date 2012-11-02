@@ -62,6 +62,7 @@ class Sleeptime < ActiveRecord::Base
   def self.make_instance (starttime, endtime, baby_object = nil)
     sleeptime_object = Sleeptime.new
     sleeptime_object.baby = baby_object
+    current_time = DateTime.current()
 
     begin
       sleeptime_object.start = self.parse(starttime)
@@ -71,12 +72,14 @@ class Sleeptime < ActiveRecord::Base
     end
 
     if (sleeptime_object.start?)
-      if (sleeptime_object.start > endtime)
-        sleeptime_object.start += -24.hours
-      end
-
-      if (endtime > DateTime.current())
-        return sleeptime_object
+      case 
+        when sleeptime_object.start > endtime
+          sleeptime_object.start += -24.hours
+        when (sleeptime_object.start > current_time and endtime > current_time)
+          sleeptime_object.start += -24.hours
+          endtime += -24.hours
+        when endtime > current_time
+          return sleeptime_object
       end
 
       sleeptime_object.duration = self.create_duration(sleeptime_object.start, endtime)
