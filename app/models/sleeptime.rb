@@ -1,4 +1,6 @@
 class Sleeptime < ActiveRecord::Base
+  EXPLICIT_DATE_FORMAT = '%Y %b %d, %H.%M'
+  CONVERSION_DATE_FORMAT = '%Y-%m-%dT%H:%M'
   attr_accessible :start, :duration
   belongs_to :baby, :inverse_of => :sleeptimes
 
@@ -17,7 +19,7 @@ class Sleeptime < ActiveRecord::Base
   }
 
   def starttime()
-    start.strftime('%Y %b %d, %H.%M')
+    start.strftime(EXPLICIT_DATE_FORMAT)
   end
 
   def starttime=(new_starttime_string)
@@ -34,11 +36,11 @@ class Sleeptime < ActiveRecord::Base
 
   def endtime()
     endtime = end_datetime()
-    endtime.strftime('%Y %b %d, %H.%M')
+    endtime.strftime(EXPLICIT_DATE_FORMAT)
   end
 
   def end_datetime()
-    end_datetime = DateTime.strptime((start.to_i + duration).to_s, '%s')
+    end_datetime = DateTime.strptime((start.to_i + duration).to_s, '%s').in_time_zone()
   end
 
   def endtime=(new_endtime_string)
@@ -101,9 +103,12 @@ class Sleeptime < ActiveRecord::Base
   def self.parse(date_string) 
     date_time = case date_string.length
       when 4 then
-        DateTime.strptime(date_string, '%H%M')
+        formatted_time_string = "#{date_string[0,2]}:#{date_string[2,2]}"
+        Time.zone.parse(formatted_time_string)
       else
-        DateTime.strptime(date_string, '%Y %b %d, %H.%M')
+        date_time_for_conversion = DateTime.strptime(date_string, EXPLICIT_DATE_FORMAT)
+        formatted_time_string = date_time_for_conversion.strftime(CONVERSION_DATE_FORMAT)
+        Time.zone.parse(formatted_time_string)
     end
     date_time  
   end

@@ -6,6 +6,9 @@ describe Sleeptime do
     @parent = @baby.create_parent(:name => 'Barney')
     @user = @parent.create_user(:email => 'user2@example.com', :password => 'secret')
     @baby.save
+
+    @user_time_zone = ActiveSupport::TimeZone.[](3600)
+    Time.zone = @user_time_zone
   end
 
 
@@ -64,6 +67,17 @@ describe Sleeptime do
     end
     it 'should not be valid' do
       @sleeptime.should_not be_valid
+    end
+  end
+
+  describe 'when sleeptime ends now' do
+    before do
+      starttime = (DateTime.current() - 1.hours).strftime('%H%M')
+      endtime = DateTime.current().strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+    end
+    it 'should be valid' do
+      @sleeptime.should be_valid
     end
   end
 
