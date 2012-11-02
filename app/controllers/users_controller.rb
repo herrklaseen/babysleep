@@ -5,7 +5,8 @@ class UsersController < ApplicationController
     if (params[:email] and params[:password])
       @user = User.find_by_email_and_password(params[:email], params[:password])
       if (@user)
-        user_time_zone = ActiveSupport::TimeZone.[](params[:user_tz_offset])
+        user_time_zone = ActiveSupport::TimeZone.[](params[:user_tz_offset].to_i)
+        logger.ap "time zone #{user_time_zone}"
         session[:user_id] = @user.id
         session[:parent_id] = Parent.find_by_user_id(@user.id).id
         session[:user_time_zone] = user_time_zone
