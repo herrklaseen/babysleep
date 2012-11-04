@@ -1,8 +1,5 @@
 class ApplicationController < ActionController::Base
-  # Disabled to prevent rails from resetting session. 
-  # SERIOUS SECURITY FLAW, MUST BE FIXED IN PRODUCTION
-  #
-  # protect_from_forgery
+  protect_from_forgery
 
   before_filter :set_user_time_zone
 

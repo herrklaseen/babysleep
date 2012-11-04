@@ -1,13 +1,6 @@
 = render "nav/main", :navigation => @navigation
 
 .container
-  .debug
-    %p 
-      Users time zone: 
-      = @user_time_zone
-    %p
-      Set time zone:
-      = @set_time_zone
 
   #sleeptime_chart
     #explanation.clearfix
@@ -26,5 +19,11 @@
        @baby.last_24h_sleeptime[:for_humans],
        t('babies.last_24h_sleeptime.during_last_24h')].join(' ') << '.'
 
-  = form_for (@sleeptimes) do |f|
-    = f.text_field :start
+  = form_tag({:controller => 'sleeptimes', :action => 'create', :baby_id => @baby.id}, {:method => :post}) do
+    = field_set_tag(t("babies.sleeptimes.create.add_new")) do
+      = label_tag("start", t("babies.sleeptimes.create.start"))
+      = text_field_tag("start", nil, :placeholder => t('babies.sleeptimes.create.placeholder_start'))
+      = label_tag("end", t("babies.sleeptimes.create.end"))
+      = text_field_tag("end", nil, :placeholder => t('babies.sleeptimes.create.placeholder_end'))
+      %div 
+        = submit_tag(t('babies.sleeptimes.create.save_sleeptime_submit'))
