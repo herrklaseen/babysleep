@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  error:
+    general_heading: "Oops, something went wrong"
   users:
     login:
       log_in_greeting: "Please log in"
@@ -34,6 +36,8 @@ en:
         save_sleeptime_changes_submit: "Save changes"
         delete_sleeptime: "Delete sleeptime"
         delete_sleeptime_submit: "Delete sleeptime"
+      error:
+        no_baby_with_id: "Could not find a Baby with that id"
   navigation: 
     about: "About"
     log_in: "Log in"

@@ -1,0 +1,7 @@
+= render "nav/main", :navigation => @navigation
+
+.container
+  %h1
+    = t('error.general_heading')
+  %p
+    = @error[:message] << '.'

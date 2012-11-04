@@ -5,18 +5,28 @@ class SleeptimesController < ApplicationController
                      :url => "/about"},
                     {:text => t('navigation.log_out'), 
                      :url => url_for(logout_path)} ]
-
-    @sleeptimes = Sleeptime.find_all_by_baby_id(params[:baby_id])
     @baby = Baby.find_by_id(params[:baby_id])
+    
+    if (@baby)
+      @sleeptimes = Sleeptime.find_all_by_baby_id(params[:baby_id])
+      @navigation.push({:text => t('navigation.last_24h_sleeptime_for') << 
+                                 @baby.name.rjust(@baby.name.length + 1), 
+                       :url => url_for(last_24h_sleeptime_baby_path(@baby))})
 
-    @navigation.push({:text => t('navigation.last_24h_sleeptime_for') << 
-                               @baby.name.rjust(@baby.name.length + 1), 
-                     :url => url_for(last_24h_sleeptime_baby_path(@baby))})
+      respond_to do |format|
+        format.html
+        format.json { render json: @sleeptimes }
+      end
+    else
+      @error = {:message => t('babies.sleeptimes.error.no_baby_with_id') }
+      @navigation.push({:text => t('navigation.choose_baby'), 
+                        :url => url_for(babies_path)})
+      respond_to do |format|
+        format.html { render 'error' }
+        format.json { render json: @sleeptimes }
+      end
+    end
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @sleeptimes }
-    end    
   end
 
   def new
