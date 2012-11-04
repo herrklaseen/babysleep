@@ -14,6 +14,8 @@ class BabiesController < ApplicationController
   end
 
   def last_24h_sleeptime
+    @user_time_zone = session[:user_time_zone]
+    @set_time_zone = Time.zone
     @navigation = [ {:text => t('navigation.about'), :url => "/about"},
                     {:text => t('navigation.log_out'), :url => url_for(logout_path)},
                     {:text => t('navigation.choose_baby'), :url => url_for(babies_path)}]

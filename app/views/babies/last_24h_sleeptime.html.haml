@@ -1,6 +1,13 @@
 = render "nav/main", :navigation => @navigation
 
 .container
+  .debug
+    %p 
+      Users time zone: 
+      = @user_time_zone
+    %p
+      Set time zone:
+      = @set_time_zone
 
   #sleeptime_chart
     #explanation.clearfix
