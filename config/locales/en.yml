@@ -2,12 +2,17 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  error:
+    general_heading: "Oops, something went wrong"
   users:
     login:
       log_in_greeting: "Please log in"
       email: "Your email"
       password: "Your password"
       log_in_submit: "Log in"
+    logout: 
+      log_out_confirmation: "You have been logged out"
+      log_out_greeting: "Thank you for using Babysleep"
   babies:
     index:
       choose_baby: "Choose baby"
@@ -24,4 +29,21 @@ en:
         end: "End"
         placeholder_end: "HHMM (for example 1436)"
         save_sleeptime_submit: "Save sleeptime"
+      index:
+        sleeptimes_for: "Sleeptimes for"
+      edit:
+        edit_sleeptime: "Edit sleeptime" 
+        save_sleeptime_changes_submit: "Save changes"
+        delete_sleeptime: "Delete sleeptime"
+        delete_sleeptime_submit: "Delete sleeptime"
+      error:
+        no_baby_with_id: "Could not find a Baby with that id"
+  navigation: 
+    about: "About"
+    log_in: "Log in"
+    log_out: "Log out"
+    edit_sleeptimes: "Edit sleeptimes"
+    back_to_sleeptimes: "Back to sleeptimes"
+    last_24h_sleeptime_for: "Last 24 hour sleeptime for"
+    choose_baby: "Choose baby"
 

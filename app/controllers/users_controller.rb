@@ -1,20 +1,33 @@
 class UsersController < ApplicationController
 
   def login
+    @navigation = [ {:text => t('navigation.about'), :url => "/about"} ]
     if (params[:email] and params[:password])
       @user = User.find_by_email_and_password(params[:email], params[:password])
       if (@user)
+        user_time_zone = ActiveSupport::TimeZone.[](params[:user_tz_offset].to_i)
         session[:user_id] = @user.id
         session[:parent_id] = Parent.find_by_user_id(@user.id).id
+        session[:user_time_zone] = user_time_zone
         
         respond_to do |format|
-          format.html { redirect_to '/babies' }
+          format.html { redirect_to url_for(:controller => 'babies', :action => 'index') }
         end
       end
     else
       respond_to do |format|
         format.html 
       end
+    end
+  end
+
+  def logout
+    @navigation = [ {:text => t('navigation.about'), :url => "/about"},
+                    {:text => t('navigation.log_in'), :url => url_for(:action => 'login') } ]
+
+    reset_session
+    respond_to do |format|
+      format.html 
     end
   end
 

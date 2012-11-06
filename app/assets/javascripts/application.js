@@ -18,4 +18,5 @@
 //= require jquery_ujs
 //= require d3.v2.js
 //= require charts.js
+//= require timezone.js
 //= require twitter/bootstrap

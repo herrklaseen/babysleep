@@ -38,7 +38,7 @@ babies = Baby.all
 
 babies.each do |baby|
   5.times do |n|
-    starttime = DateTime.current - (2 * n).hours
+    starttime = DateTime.current - (3 * n).hours
     endtime = (starttime.dup + 1.hours) - rand(20).minutes
     sleeptime = Sleeptime.make_instance(starttime.strftime('%H%M'), endtime.strftime('%H%M'), baby)
     sleeptime.save!
