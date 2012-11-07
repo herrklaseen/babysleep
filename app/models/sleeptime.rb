@@ -56,8 +56,12 @@ class Sleeptime < ActiveRecord::Base
   end
 
   def has_collision()
-    previous_sleeptimes = Sleeptime.where(:start => (Time.zone.now()-24.hours)..self.start, :baby_id => self.baby.id)
-    next_sleeptimes = Sleeptime.where(:start => self.start..(self.start+24.hours), :baby_id => self.baby.id)
+    previous_sleeptimes = Sleeptime.where(
+      :start => (Time.zone.now()-24.hours)..self.start, 
+      :baby_id => self.baby.id)
+    next_sleeptimes = Sleeptime.where(
+      :start => self.start..(self.start+24.hours), 
+      :baby_id => self.baby.id)
 
     previous_sleeptimes.each do |previous_sleeptime|
       if (previous_sleeptime.end_datetime > self.start.in_time_zone())
@@ -70,7 +74,7 @@ class Sleeptime < ActiveRecord::Base
         return true
       end
     end
-   
+
     return false
   end
       
