@@ -182,7 +182,7 @@ describe Sleeptime do
       @first_sleeptime = Sleeptime.make_instance(first_starttime, first_endtime, @baby)
       @first_sleeptime.save
 
-      wrongful_starttime = (@current_time - 5.hour).strftime('%H%M')
+      wrongful_starttime = (@current_time - 5.hours).strftime('%H%M')
       wrongful_endtime = (@current_time - 30.minutes).strftime('%H%M')
       @simultaneous_sleeptime = Sleeptime.make_instance(wrongful_starttime, wrongful_endtime, @baby)
     end
@@ -190,6 +190,24 @@ describe Sleeptime do
       @simultaneous_sleeptime.should_not be_valid
     end
   end
+
+    describe 'when a sleeptime overlaps another sleeptime' do
+    before do
+      @current_time = DateTime.current()
+      first_starttime = (@current_time - 4.hours).strftime('%H%M')
+      first_endtime = (@current_time - 2.hours).strftime('%H%M')
+      @first_sleeptime = Sleeptime.make_instance(first_starttime, first_endtime, @baby)
+      @first_sleeptime.save
+
+      wrongful_starttime = (@current_time - 5.hours).strftime('%H%M')
+      wrongful_endtime = (@current_time - 1.hour).strftime('%H%M')
+      @simultaneous_sleeptime = Sleeptime.make_instance(wrongful_starttime, wrongful_endtime, @baby)
+    end
+    it 'should not be valid' do
+      @simultaneous_sleeptime.should_not be_valid
+    end
+  end
+
 
 end
 
