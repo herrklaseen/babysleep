@@ -70,10 +70,21 @@ describe Sleeptime do
     end
   end
 
-    describe 'when sleeptime starts and ends after now' do
+  describe 'when sleeptime starts and ends after now' do
     before do
       starttime = (DateTime.current() + 8.hours).strftime('%H%M')
       endtime = (DateTime.current() + 1.hours).strftime('%H%M')
+      @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+    end
+    it 'should be valid' do
+      @sleeptime.should be_valid
+    end
+  end
+
+  describe 'when sleeptime starts after now' do
+    before do
+      starttime = (DateTime.current() + 2.hours).strftime('%H%M')
+      endtime = (DateTime.current() - 1.hours).strftime('%H%M')
       @sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
     end
     it 'should be valid' do
