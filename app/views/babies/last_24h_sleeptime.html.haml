@@ -5,9 +5,9 @@
   #sleeptime_chart
     #explanation.clearfix
       .pull-left
-        = t('babies.sleeptimes.asleep')
+        = [t('babies.sleeptimes.asleep'), @baby.last_24h_sleeptime[:percentage][0], '%'].join(' ')
       .pull-right
-        = t('babies.sleeptimes.awake')
+        = [t('babies.sleeptimes.awake'), @baby.last_24h_sleeptime[:percentage][1], '%'].join(' ')
 
     %p 
       = @baby.last_24h_sleeptime[:percentage][0]

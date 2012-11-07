@@ -55,6 +55,25 @@ class Sleeptime < ActiveRecord::Base
     self.save!
   end
 
+  def has_collision()
+    previous_sleeptimes = Sleeptime.where(:start => (Time.zone.now()-24.hours)..self.start)
+    next_sleeptimes = Sleeptime.where(:start => self.start..(self.start+24.hours))
+
+    previous_sleeptimes.each do |previous_sleeptime|
+      if (previous_sleeptime.end_datetime > self.start.in_time_zone())
+        return true
+      end
+    end
+
+    next_sleeptimes.each do |next_sleeptime|
+      if (self.end_datetime > next_sleeptime.start.in_time_zone())
+        return true
+      end
+    end
+   
+    return false
+  end
+      
   def description()
     start.strftime('%b %d, %H.%M: ') << Sleeptime::seconds_to_human_readable(duration)
   end
@@ -83,8 +102,12 @@ class Sleeptime < ActiveRecord::Base
       end
 
       sleeptime_object.duration = self.create_duration(sleeptime_object.start, endtime)
-    end
 
+      if (sleeptime_object.has_collision())
+        sleeptime_object.duration = nil
+      end
+    end
+    
     sleeptime_object
   end
 
