@@ -44,3 +44,14 @@ babies.each do |baby|
     sleeptime.save!
   end
 end
+
+# For user test
+
+@user = User.create!( :email => 'test@test.com', :password => 'test' )
+@parent = Parent.new( :name => 'Tester' )
+@parent.user = @user
+@parent.save!
+@baby = Baby.new( :name => 'Lilla Ruffa', 
+  :date_of_birth => Date.current() - 18.months )
+@baby.parent = @parent
+@baby.save!
