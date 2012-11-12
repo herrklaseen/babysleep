@@ -5,7 +5,7 @@ Babysleep::Application.routes.draw do
 
   devise_for :users
 
-  root :to => 'users#login'
+  root :to => "static_pages#home"
   match "login" => "users#login", :as => "login", :via => [:get, :post]
   match "logout" => "users#logout", :as => "logout", :via => [:get]
   resources :users

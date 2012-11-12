@@ -38,6 +38,11 @@ en:
         delete_sleeptime_submit: "Delete sleeptime"
       error:
         no_baby_with_id: "Could not find a Baby with that id"
+  static_pages:
+    home:
+      welcome: "Welcome to Babysleep!"
+      tagline: "The super simple baby tracker"
+      introduction: "We want to make it easier for parents to keep track of their infants’ sleep. "
   navigation: 
     about: "About"
     log_in: "Log in"
