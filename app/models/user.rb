@@ -1,5 +1,12 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   has_one :parent
 
   before_save { |user| user.email = user.email.downcase }
@@ -11,7 +18,7 @@ class User < ActiveRecord::Base
     :format => { :with => VALID_EMAIL_REGEX }, 
     :uniqueness => { :case_sensitive => false }
   }
-  validates :password, {
+  validates :encrypted_password, {
     :presence => true
   }
 

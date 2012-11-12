@@ -1,4 +1,10 @@
 Babysleep::Application.routes.draw do
+  get "static_pages/home"
+
+  get "static_pages/help"
+
+  devise_for :users
+
   root :to => 'users#login'
   match "login" => "users#login", :as => "login", :via => [:get, :post]
   match "logout" => "users#logout", :as => "logout", :via => [:get]

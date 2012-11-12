@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_user_time_zone
+  before_filter :set_user_time_zone, :authenticate_user!
 
   helper_method :set_user_time_zone
 
