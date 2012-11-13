@@ -43,6 +43,20 @@ en:
       welcome: "Welcome to Babysleep!"
       tagline: "The super simple baby tracker"
       introduction: "We want to make it easier for parents to keep track of their infants’ sleep. "
+    about:
+      background: "Background"
+      background_text: "Our first child was born in July 2011. During her first
+months we were almost obsessed with her sleep, mainly because her sleep also
+controlled ours. I tried out several baby tracker apps and found them too
+advanced and focused on timing the infant like with a stop-watch. That was not
+ideal for us."
+      background_text_2: "For instance, when a baby wants to eat (breastfed 
+or bottlefed) the parent’s main focus is on feeding, not on starting a timer. 
+Same thing with sleep. We ended up writing down the times our daughter fell 
+asleep and woke up on paper, summing the hours and minutes every morning. 
+We actually found that easier than using a baby tracker app – because the apps 
+were too advanced." 
+ 
   navigation: 
     about: "About"
     log_in: "Log in"

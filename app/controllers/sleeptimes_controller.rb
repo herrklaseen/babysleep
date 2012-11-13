@@ -2,9 +2,10 @@ class SleeptimesController < ApplicationController
 
   def index 
     @navigation = [ {:text => t('navigation.about'), 
-                     :url => "/about"},
+                     :url => url_for(about_path)},
                     {:text => t('navigation.log_out'), 
-                     :url => url_for(logout_path)} ]
+                     :url => url_for(destroy_user_session_path),
+                     :method => :delete} ]
     @baby = Baby.find_by_id(params[:baby_id])
     
     if (@baby)
@@ -55,8 +56,11 @@ class SleeptimesController < ApplicationController
   end  
 
   def edit
-    @navigation = [ {:text => t('navigation.about'), :url => "/about"},
-                {:text => t('navigation.log_out'), :url => url_for(logout_path)}]
+    @navigation = [ {:text => t('navigation.about'), 
+                     :url => url_for(about_path)},
+                    {:text => t('navigation.log_out'), 
+                     :url => url_for(destroy_user_session_path),
+                     :method => :delete} ]
 
     @baby = Baby.find_by_id(params[:baby_id])
     @sleeptime = Sleeptime.find_by_id(params[:id])

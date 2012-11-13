@@ -7,13 +7,16 @@
         %span.icon-bar
         %span.icon-bar
 
-      %a{:class => "brand", :href => "#"} Babysleep
+      %a{:class => "brand", :href => url_for(home_path)} Babysleep
 
       .nav-collapse.collapse
         %ul.nav
           - navigation.each do |link|
-            %li
-              %a{:href => "#{link[:url]}"}
-                = link[:text]
+            - if (link.include?(:method))
+              %li
+                = link_to(link[:text], link[:url], :method => link[:method])
+            - else
+              %li
+                = link_to(link[:text], link[:url])
 
            
