@@ -8,7 +8,10 @@
 
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     %legend 
-      = t("users.login.log_in_greeting") 
+      = t("users.login.log_in_greeting")
+
+    = f.hidden_field :session_tz_offset
+
     %div
       = f.label :email 
       = f.email_field :email

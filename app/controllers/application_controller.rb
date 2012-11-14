@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :set_user_time_zone
 
   helper_method :set_user_time_zone
 
@@ -12,11 +12,18 @@ class ApplicationController < ActionController::Base
   private
 
   def set_user_time_zone
+    logger.ap current_user
     if (user_signed_in?)
-        Time.zone = session[:user_time_zone]
+      if(user_session[:time_zone])
+        Time.zone = user_session[:time_zone]
+      else
+        user_session[:time_zone] = ActiveSupport::TimeZone.[](current_user[:session_tz_offset])
+        Time.zone = user_session[:time_zone]
+      end
     else
       Time.zone = config.time_zone
     end
+    logger.ap("Session time zone is #{Time.zone}")
   end
 
 

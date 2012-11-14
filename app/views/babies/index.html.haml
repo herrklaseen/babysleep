@@ -1,10 +1,11 @@
 = render "nav/main", :navigation => @navigation
 
-.clickable-list
-  %h1
-    = t('babies.index.choose_baby')
-  %ul
-    - @babies.each do |baby|
-      %li
-        %a{:href => "/babies/#{baby.id}/last_24h_sleeptime"}
-          = baby.name
+.container
+  .clickable-list
+    %h1
+      = t('babies.index.choose_baby')
+    %ul
+      - @babies.each do |baby|
+        %li
+          %a{:href => "/babies/#{baby.id}/last_24h_sleeptime"}
+            = baby.name
