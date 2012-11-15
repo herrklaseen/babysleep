@@ -22,7 +22,7 @@ class Baby < ActiveRecord::Base
     sleeptime_last_24h = { :for_humans => nil,
                            :in_seconds => 0,
                            :percentage => [0, 0] }
-    twentyfour_h_ago = DateTime.current - 24.hours
+    twentyfour_h_ago = Time.zone.now - 24.hours
     self.sleeptimes.each do |sleeptime|
       if (sleeptime.start > twentyfour_h_ago)
         sleeptime_last_24h[:in_seconds] += sleeptime.duration

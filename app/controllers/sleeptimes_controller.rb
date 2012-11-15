@@ -1,4 +1,5 @@
 class SleeptimesController < ApplicationController
+  before_filter :set_user_time_zone
 
   def index 
     @navigation = [ {:text => t('navigation.about'), 
