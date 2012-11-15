@@ -230,8 +230,4 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
-  # Trying to set user time zone offset on login
-  Warden::Manager.after_set_user do |user, auth, opts|
-    logger "warden"
-  end
 end

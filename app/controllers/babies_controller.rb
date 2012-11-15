@@ -1,5 +1,5 @@
 class BabiesController < ApplicationController
-  before_filter :set_parent_id
+  before_filter :set_parent_id, :set_user_time_zone
 
   def index
     @navigation = [ {:text => t('navigation.about'), :url => url_for(about_path)},
