@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :session_tz_offset
   has_one :parent
 
+  accepts_nested_attributes_for  :parent
+
   before_save { |user| user.email = user.email.downcase }
 
   VALID_EMAIL_REGEX = /\A([\w+\-_]+(\.)?)+@{1}([\w\-]+\.)+[a-z\d]{2,4}\z/i
