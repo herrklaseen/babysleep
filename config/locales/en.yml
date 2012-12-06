@@ -65,4 +65,16 @@ were too advanced."
     back_to_sleeptimes: "Back to sleeptimes"
     last_24h_sleeptime_for: "Last 24 hour sleeptime for"
     choose_baby: "Choose baby"
+    help: "Help"
+    home: "Home"
 
+  devise_customized:
+    registration:
+      edit:
+        password_leave_blank: "leave blank if you don't want to change it"
+        password_need_to_confirm_changes: "we need your current password to confirm your changes"
+        update: "Update"
+        cancel_account: "Want to cancel your account?"
+        cancel_account_text_1: "If you want to cancel your account, be aware that all your babies’ sleeptimes will be deleted. There is no undo once you confirm."
+        delete_account: "Delete my account"
+        delete_confirm: "Are you sure?"

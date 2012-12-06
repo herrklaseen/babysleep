@@ -1,4 +1,4 @@
-= # render "nav/main", :navigation => @navigation
+= render "nav/main_static"
 
 .container
   %h2 Sign up
@@ -18,9 +18,10 @@
       = f.label :password_confirmation
       = f.password_field :password_confirmation
 
-    %div
-      = f.label :parent_name, :title, "Your name"
-      = f.text_field :parent_name
+    = f.fields_for :parent do |parent_form|
+      %div
+        = parent_form.label :name
+        = parent_form.text_field :name
 
     %div
       = f.submit "Sign up"

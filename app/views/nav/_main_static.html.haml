@@ -11,12 +11,10 @@
 
       .nav-collapse.collapse
         %ul.nav
-          - navigation.each do |link|
-            - if (link.include?(:method))
-              %li
-                = link_to(link[:text], link[:url], :method => link[:method])
-            - else
-              %li
-                = link_to(link[:text], link[:url])
+          %li
+            = link_to(t('navigation.home'), url_for(home_path))
+          %li
+            = link_to(t('navigation.about'), url_for(about_path))
+          %li
+            = link_to(t('navigation.help'), url_for(help_path))
 
-           

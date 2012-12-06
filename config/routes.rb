@@ -7,7 +7,6 @@ Babysleep::Application.routes.draw do
 
   root :to => "static_pages#home"
 
-  resources :users
   resources :parents do
     resources :babies
   end 

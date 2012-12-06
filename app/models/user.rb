@@ -6,12 +6,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :session_tz_offset
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :session_tz_offset, :parent_attributes
   has_one :parent
 
-  accepts_nested_attributes_for  :parent
+  accepts_nested_attributes_for :parent
 
   before_save { |user| user.email = user.email.downcase }
+  after_initialize { |record| record.build_parent if record.parent == nil }
 
   VALID_EMAIL_REGEX = /\A([\w+\-_]+(\.)?)+@{1}([\w\-]+\.)+[a-z\d]{2,4}\z/i
 

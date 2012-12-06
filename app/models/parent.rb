@@ -8,5 +8,4 @@ class Parent < ActiveRecord::Base
         :length => { :minimum => 5, :maximum => 100 }
         }
 
-  validates :user, { :presence => true }
 end
