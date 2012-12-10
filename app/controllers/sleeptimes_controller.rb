@@ -25,7 +25,7 @@ class SleeptimesController < ApplicationController
                         :url => url_for(babies_path)})
       respond_to do |format|
         format.html { render 'error' }
-        format.json { render json: @sleeptimes }
+        format.json { render json: @error }
       end
     end
 

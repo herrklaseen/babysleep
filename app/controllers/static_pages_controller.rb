@@ -37,6 +37,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def error
+
+  end
+
   def help
   end
 

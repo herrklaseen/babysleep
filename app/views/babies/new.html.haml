@@ -1,0 +1,17 @@
+= render "nav/main", :navigation => @navigation
+
+.container
+  %h2 New baby
+
+  = form_for([@parent, @baby]) do |f|
+
+    %div
+      = f.label :name
+      = f.text_field :name
+
+    %div
+      = f.label :birth_date
+      = select_date Date.today, :prefix => 'baby[birth_date]'
+
+    %div
+      = f.submit t('babies.new.add_baby_submit')
