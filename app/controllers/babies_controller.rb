@@ -26,9 +26,8 @@ class BabiesController < ApplicationController
 
   def create
     @parent = Parent.find_by_id(params[:parent_id])
-    birthdate = params[:baby][:birth_date] 
-    birthdate_array = [ birthdate[:year], birthdate[:month], birthdate[:day] ]
-    birthdate_string = birthdate_array * ", "
+    birthdate = params[:date]
+    birthdate_string = [ birthdate[:birth_year], birthdate[:birth_month], birthdate[:birth_day] ] * ", "
     date_of_birth = Date.strptime(birthdate_string, "%Y, %m, %d")
     @baby = Baby.new(:name => params[:baby][:name], 
                      :date_of_birth => date_of_birth)
