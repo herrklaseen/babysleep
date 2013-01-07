@@ -1,0 +1,11 @@
+= render "nav/main", :navigation => @navigation
+
+.container
+
+  %h1
+    = t('users.logout.log_out_confirmation')
+  %p 
+    = t('users.logout.log_out_greeting') << '. '
+    Please click
+    %a{:href => "#{url_for(login_path)}"} here
+    to log in again.

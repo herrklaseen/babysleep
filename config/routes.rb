@@ -1,7 +1,13 @@
 Babysleep::Application.routes.draw do
-  root :to => 'users#login'
-  match "login" => "users#login", :as => "login", :via => [:get, :post]
-  resources :users
+  match "home", :to => "static_pages#home", :via => [:get]
+  match "about", :to => "static_pages#about", :via => [:get]
+  match "help", :to => "static_pages#help", :via => [:get]
+  match "error", :to => "static_pages#error", :via => [:get]
+
+  devise_for :users
+
+  root :to => "static_pages#home"
+
   resources :parents do
     resources :babies
   end 

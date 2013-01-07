@@ -1,8 +1,20 @@
-.clickable-list
-  %h1
-    = t('babies.index.choose_baby')
-  %ul
-    - @babies.each do |baby|
-      %li
-        %a{:href => "/babies/#{baby.id}/last_24h_sleeptime"}
-          = baby.name
+= render "nav/main", :navigation => @navigation
+
+.container
+  - if (@babies.any?)
+    .clickable-list
+      %h1
+        = t('babies.index.choose_baby')
+      %ul
+        - @babies.each do |baby|
+          %li
+            %a{:href => "/babies/#{baby.id}/last_24h_sleeptime"}
+              = baby.name
+  - else
+    %h1
+      = t('babies.index.no_babies.wheres_my_baby')
+    %p
+      = t('babies.index.no_babies.explanation')
+    %p
+      = link_to(t('babies.index.no_babies.add_babies_button'), 
+        url_for(new_parent_baby_path(current_user.parent.id)), :class => 'btn btn-large btn-info')

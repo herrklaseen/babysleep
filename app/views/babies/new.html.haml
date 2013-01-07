@@ -1,0 +1,23 @@
+= render "nav/main", :navigation => @navigation
+
+.container
+  %h2 New baby
+
+  = form_for([@parent, @baby]) do |f|
+
+    %div
+      = f.label :name
+      = f.text_field :name
+
+    %div
+      - @today = Date.today()
+      - @ten_years_ago = (@today - 10.years).year
+      - @this_year = @today.year
+      = f.label :birth_date
+      = select_year(@today, :start_year => @ten_years_ago, 
+        :end_year => @this_year, :field_name => 'birth_year')
+      = select_month(@today, :field_name => 'birth_month')
+      = select_day(@today, :field_name => 'birth_day')
+
+    %div
+      = f.submit t('babies.new.add_baby_submit')

@@ -13,6 +13,14 @@ $(document).ready(function() {
      .data(data)
    .enter().append("div")
      .style("width", function(d) { return (d * 1) + "%"; })
+     .style("min-height", function(d) { return "20px" })
+     .style("display", function(d) {
+        if(d == 0) {
+          return "none"
+        } else {
+          return "block"
+        };
+     })
      .attr("class", function(d, i) {
         if (i % 2 != 0) {
           return "awake bar";
@@ -20,8 +28,7 @@ $(document).ready(function() {
         else {
           return "asleep bar";
         }
-     })
-     .text(function(d) { return d + "%"; });
+     });
   };
   var thereIsAChartHere = $("#sleeptime_chart");
   if (thereIsAChartHere) {

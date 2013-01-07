@@ -1,0 +1,46 @@
+= render "nav/main_static"
+
+.container
+  %h2 
+    Edit 
+    = resource_name.to_s.humanize
+
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| 
+    = devise_error_messages!
+
+    %div
+      = f.label :email
+      = f.email_field :email
+
+    %div
+      = f.label :password 
+      %p
+        = "(#{t('devise_customized.registration.edit.password_leave_blank')})"
+      = f.password_field :password, :autocomplete => "off"
+
+    %div 
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+
+    %div 
+      = f.label :current_password 
+      %p 
+        = "(#{t('devise_customized.registration.edit.password_need_to_confirm_changes')})"
+      = f.password_field :current_password
+
+    = f.fields_for :parent do |parent_form|
+      %div
+        = parent_form.label :name
+        = parent_form.text_field :name
+
+    %div 
+      = f.submit "Update"
+
+  %h3
+    = t('devise_customized.registration.edit.cancel_account')
+
+  %p
+    = t('devise_customized.registration.edit.cancel_account_text_1')
+  %p
+    = link_to(t('devise_customized.registration.edit.delete_account'), registration_path(resource_name),
+        :method => :delete, :confirm => t('devise_customized.registration.edit.delete_confirm')) 

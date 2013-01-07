@@ -2,15 +2,29 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  error:
+    general_heading: "Oops, something went wrong"
   users:
     login:
       log_in_greeting: "Please log in"
       email: "Your email"
       password: "Your password"
       log_in_submit: "Log in"
+    logout: 
+      log_out_confirmation: "You have been logged out"
+      log_out_greeting: "Thank you for using Babysleep"
   babies:
     index:
       choose_baby: "Choose baby"
+      no_babies:
+        wheres_my_baby: "Where’s my baby?"
+        explanation: "It seems you have not added any babies to the system. You can 
+do so by clicking on the button below."
+        add_babies_button: "Add babies"
+    new: 
+      error:
+        no_parent_with_id: "Could not find a Parent with that id."
+      add_baby_submit: "Add baby"
     last_24h_sleeptime: 
       slept: "has slept"
       during_last_24h: "during the last 24 hours"
@@ -24,4 +38,52 @@ en:
         end: "End"
         placeholder_end: "HHMM (for example 1436)"
         save_sleeptime_submit: "Save sleeptime"
+      index:
+        sleeptimes_for: "Sleeptimes for"
+      edit:
+        edit_sleeptime: "Edit sleeptime" 
+        save_sleeptime_changes_submit: "Save changes"
+        delete_sleeptime: "Delete sleeptime"
+        delete_sleeptime_submit: "Delete sleeptime"
+      error:
+        no_baby_with_id: "Could not find a Baby with that id"
+  static_pages:
+    home:
+      welcome: "Welcome to Babysleep!"
+      tagline: "The super simple baby tracker"
+      introduction: "We want to make it easier for parents to keep track of their infants’ sleep. "
+    about:
+      background: "Background"
+      background_text: "Our first child was born in July 2011. During her first
+months we were almost obsessed with her sleep, mainly because her sleep also
+controlled ours. I tried out several baby tracker apps and found them too
+advanced and focused on timing the infant like with a stop-watch. That was not
+ideal for us."
+      background_text_2: "For instance, when a baby wants to eat (breastfed 
+or bottlefed) the parent’s main focus is on feeding, not on starting a timer. 
+Same thing with sleep. We ended up writing down the times our daughter fell 
+asleep and woke up on paper, summing the hours and minutes every morning. 
+We actually found that easier than using a baby tracker app – because the apps 
+were too advanced." 
+ 
+  navigation: 
+    about: "About"
+    log_in: "Log in"
+    log_out: "Log out"
+    edit_sleeptimes: "Edit sleeptimes"
+    back_to_sleeptimes: "Back to sleeptimes"
+    last_24h_sleeptime_for: "Last 24 hour sleeptime for"
+    choose_baby: "Choose baby"
+    help: "Help"
+    home: "Home"
 
+  devise_customized:
+    registration:
+      edit:
+        password_leave_blank: "leave blank if you don't want to change it"
+        password_need_to_confirm_changes: "we need your current password to confirm your changes"
+        update: "Update"
+        cancel_account: "Want to cancel your account?"
+        cancel_account_text_1: "If you want to cancel your account, be aware that all your babies’ sleeptimes will be deleted. There is no undo once you confirm."
+        delete_account: "Delete my account"
+        delete_confirm: "Are you sure?"

@@ -1,11 +1,18 @@
-%form{:method => "POST"}
-  %legend 
-    = t("users.login.log_in_greeting")
-  %label 
-    = t("users.login.email")
-    %input{:type => "email", :name => "email"}
-  %label 
-    = t("users.login.password")
-    %input{:type => "password", :name => "password"}
-  %input{ :type => "submit",
-          :value => "#{t('users.login.log_in_submit')}"}
+= render "nav/main", :navigation => @navigation
+
+.container
+
+  %form{:method => "POST"}
+    %legend 
+      = t("users.login.log_in_greeting")
+
+    %input{:type => "hidden", :name => "user_tz_offset", :value => 0 }
+
+    %label 
+      = t("users.login.email")
+      %input{:type => "email", :name => "email"}
+    %label 
+      = t("users.login.password")
+      %input{:type => "password", :name => "password"}
+    %input{ :type => "submit",
+            :value => "#{t('users.login.log_in_submit')}"}

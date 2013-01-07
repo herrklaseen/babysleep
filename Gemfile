@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'less-rails-bootstrap', '> 1.3.0'
 gem 'therubyracer'
 gem 'haml'
+gem 'awesome_print' # remove?
+gem 'devise'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,30 +1,29 @@
-#sleeptime_chart
-  #explanation.clearfix
-    .pull-left
-      = t('babies.sleeptimes.asleep')
-    .pull-right
-      = t('babies.sleeptimes.awake')
+= render "nav/main", :navigation => @navigation
+
+.container
+
+  #sleeptime_chart
+    #explanation.clearfix
+      .pull-left
+        = [t('babies.sleeptimes.asleep'), @baby.last_24h_sleeptime[:percentage][0], '%'].join(' ')
+      .pull-right
+        = [t('babies.sleeptimes.awake'), @baby.last_24h_sleeptime[:percentage][1], '%'].join(' ')
+
+    %p 
+      = @baby.last_24h_sleeptime[:percentage][0]
+    %p
+      = @baby.last_24h_sleeptime[:percentage][1]
 
   %p 
-    = @baby.last_24h_sleeptime[:percentage][0]
-  %p
-    = @baby.last_24h_sleeptime[:percentage][1]
+    = [@baby.name, t('babies.last_24h_sleeptime.slept'),
+       @baby.last_24h_sleeptime[:for_humans],
+       t('babies.last_24h_sleeptime.during_last_24h')].join(' ') << '.'
 
-%p 
-  = [@baby.name, t('babies.last_24h_sleeptime.slept'), @baby.last_24h_sleeptime[:for_humans], t('babies.last_24h_sleeptime.during_last_24h')].join(' ') << '.'
-
-%form{:method => "POST", :action => "/babies/#{@baby.id}/sleeptimes"}
-  %legend 
-    = t("babies.sleeptimes.create.add_new")
-  %label 
-    = t("babies.sleeptimes.create.start")
-    %input{:type => "text",
-           :name => "start",
-           :placeholder => "#{t('babies.sleeptimes.create.placeholder_start')}"}
-  %label 
-    = t("babies.sleeptimes.create.end")
-    %input{:type => "text",
-           :name => "end",
-           :placeholder => "#{t('babies.sleeptimes.create.placeholder_end')}"}
-  %input{ :type => "submit",
-          :value => "#{t('babies.sleeptimes.create.save_sleeptime_submit')}"}
+  = form_tag({:controller => 'sleeptimes', :action => 'create', :baby_id => @baby.id}, {:method => :post}) do
+    = field_set_tag(t("babies.sleeptimes.create.add_new")) do
+      = label_tag("start", t("babies.sleeptimes.create.start"))
+      = text_field_tag("start", nil, :placeholder => t('babies.sleeptimes.create.placeholder_start'))
+      = label_tag("end", t("babies.sleeptimes.create.end"))
+      = text_field_tag("end", nil, :placeholder => t('babies.sleeptimes.create.placeholder_end'))
+      %div 
+        = submit_tag(t('babies.sleeptimes.create.save_sleeptime_submit'))

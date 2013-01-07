@@ -6,13 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Time.zone = 'Amsterdam'
+
 # Generate user
 
 email = 'user@example.com'
 password = 'secret'
 
 @user = User.create!( :email => email,
-              :password => password )
+              :password => password,
+              :password_confirmation => password )
 
 # Generate parent
 
@@ -38,9 +41,20 @@ babies = Baby.all
 
 babies.each do |baby|
   5.times do |n|
-    starttime = DateTime.current - (2 * n).hours
-    endtime = (starttime.dup + 1.hours) - rand(20).minutes
+    starttime = DateTime.current - (3 * (n + 1)).hours
+    endtime = (starttime.dup + 30.minutes) - rand(15).minutes
     sleeptime = Sleeptime.make_instance(starttime.strftime('%H%M'), endtime.strftime('%H%M'), baby)
     sleeptime.save!
   end
 end
+
+# For user test
+
+# @user = User.create!( :email => 'test@test.com', :password => 'test' )
+# @parent = Parent.new( :name => 'Tester' )
+# @parent.user = @user
+# @parent.save!
+# @baby = Baby.new( :name => 'Lilla Ruffa', 
+#   :date_of_birth => Date.current() - 18.months )
+# @baby.parent = @parent
+# @baby.save!
