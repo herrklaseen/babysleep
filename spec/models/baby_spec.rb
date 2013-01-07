@@ -6,15 +6,6 @@ describe Baby do
     @parent = @baby.create_parent(:name => 'Barney')
     @user = @parent.create_user(:email => 'user2@example.com', :password => 'secret')
 
-    # Adding five hours of sleeptime to this baby
-    #
-    5.times do |n|
-      starttime = DateTime.current - (2 * n).hours
-      endtime = (starttime.dup + 1.hours)
-      sleeptime = Sleeptime.make_instance(starttime.strftime('%H%M'), endtime.strftime('%H%M'), @baby)
-      sleeptime.save!
-    end
-
   end
 
   subject { @baby }
@@ -35,14 +26,25 @@ describe Baby do
   end
 
   describe 'with five hours of sleeptime' do
-    it 'should report that time in seconds' do
-      @baby.last_24h_sleeptime[:in_seconds].should eq(5.hours.to_i)
+    before do
+      5.times do |n|
+        starttime = (DateTime.current() - (n + 2).hours).strftime('%H%M')
+        endtime = (DateTime.current() - (n + 1).hours).strftime('%H%M')
+        sleeptime = Sleeptime.make_instance(starttime, endtime, @baby)
+        sleeptime.save!
+      end
     end
-  end
 
-  describe 'with five hours of sleeptime' do
-    it 'should report that time percent of 24 hours' do
-      @baby.last_24h_sleeptime[:percentage].should eq([21, 79])
+    context 'reporting in seconds' do
+      it 'should report that time in seconds' do
+        @baby.last_24h_sleeptime[:in_seconds].should eq(5.hours.to_i)
+      end
+    end
+
+    context 'reporting in percentage' do
+      it 'should report that time as percent of 24 hours' do
+        @baby.last_24h_sleeptime[:percentage].should eq([21, 79])
+      end
     end
   end
 
